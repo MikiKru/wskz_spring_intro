@@ -9,7 +9,6 @@ import pl.wskz.spring_intro.service.TaskService;
 @Controller     // klasa specyficzna do mapowania żądań http
 public class TaskController {
     private TaskService taskService;
-
     @Autowired
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -20,4 +19,11 @@ public class TaskController {
     public String home(){           // wywołanie
         return taskService.textToUpperCase("Hello Spring!");     // działanie: widok html
     }
+
+    @ResponseBody
+    @GetMapping("/tasks")
+    public String publishTasks(){
+        return taskService.publishAllTasks();
+    }
+
 }
